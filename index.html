@@ -1,0 +1,57 @@
+
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <title>三民耶晚抽籤！</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="三民耶晚抽籤！">
+    <meta property="og:locale" content="zh_TW" />
+    <link rel="stylesheet" href="https://getbootstrap.com/docs/4.5/dist/css/bootstrap.min.css">
+    <meta http-equiv="pragma" content="no-cache">
+    <meta name="author" content="">
+    <meta name="robots" content="noindex,nofollow">
+    <!-- icons -->
+    <style>
+    body {
+        background:#4b4276;
+        color:#FFF;
+        
+    }
+    @keyframes pop {
+        0% { transform: translate(-50%, -50%) scale(1.25, 0.75); }
+        50% { transform: translate(-50%, -150%) scale(1, 1); }
+        55% { transform: translate(-50%, -150%) rotate(15deg); }
+        60% { transform: translate(-50%, -150%) rotate(-15deg); }
+        65% { transform: translate(-50%, -150%) rotate(15deg); }
+        70% { transform: translate(-50%, -150%) rotate(-15deg); }
+        100% { transform: translate(-50%, -50%) scale(1.25, 0.75); }
+    }
+    .jump {
+        animation: pop 1.2s infinite;
+        margin-top:30%;
+        margin-bottom:-30%;
+        font-size:250px;
+    }
+    </style>
+</head>
+<body>
+        <div class="d-flex justify-content-center">
+            <script>  
+                // Function to generate random number  
+                function randomNumber(min, max) {  
+                    return Math.floor(Math.random() * (max - min) + min); 
+                }  
+                  
+                // document.write("Random Number between 1 and 100: ")  
+                  
+                // Function call 
+                document.write("<h1 class='jump'>" + randomNumber(1, 1400) + "</h1>" );  
+            </script>  
+
+        </div>
+        <div class="d-flex justify-content-center">
+            <a href="" class="btn btn-primary">再抽一組！</a>
+        </div>
+</body>
+</html>
