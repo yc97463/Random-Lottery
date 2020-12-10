@@ -1,4 +1,5 @@
 
+
 <!DOCTYPE html>
 <html lang="zh-TW">
 <head>
@@ -19,24 +20,27 @@
         
     }
     @keyframes pop {
-        0% { transform: translate(-50%, -50%) scale(1.25, 0.75); }
-        50% { transform: translate(-50%, -150%) scale(1, 1); }
-        55% { transform: translate(-50%, -150%) rotate(15deg); }
-        60% { transform: translate(-50%, -150%) rotate(-15deg); }
-        65% { transform: translate(-50%, -150%) rotate(15deg); }
-        70% { transform: translate(-50%, -150%) rotate(-15deg); }
-        100% { transform: translate(-50%, -50%) scale(1.25, 0.75); }
+        0% { transform: translate(0%, 20%) scale(1.25, 0.75); }
+        50% { transform: translate(0%, 30%) scale(1, 1); }
+        55% { transform: translate(0%, 30%) rotate(15deg); }
+        60% { transform: translate(0%, 30%) rotate(-15deg); }
+        65% { transform: translate(0%, 30%) rotate(15deg); }
+        70% { transform: translate(0%, 30%) rotate(-15deg); }
+        100% { transform: translate(0%, 20%) scale(1.25, 0.75); }
     }
     .jump {
         animation: pop 1.2s infinite;
-        margin-top:30%;
-        margin-bottom:-30%;
         font-size:250px;
+    }
+    .container-flex {
+        height: calc(100%-40px);
+        width:100%;
+        background:#000000;
     }
     </style>
 </head>
-<body>
-        <div class="d-flex justify-content-center">
+<body onClick="window.location.reload();">
+        <!-- <div class="jumbotron" style="height:100%;background:rgba(255,255,255,0);border:solid 5px #FFF;margin:20%;height:calc(100%-40px);">
             <script>  
                 // Function to generate random number  
                 function randomNumber(min, max) {  
@@ -46,12 +50,23 @@
                 // document.write("Random Number between 1 and 100: ")  
                   
                 // Function call 
-                document.write("<h1 class='jump'>" + randomNumber(1, 1400) + "</h1>" );  
+                document.write("<span class='jump'>" + randomNumber(1, 1700 ) + "</span>" );  
+            </script>  
+        </div> -->
+        <center>
+                <h1 class="d-flex justify-content-center" style="padding-top:50px;color:#FFF;text-decoration: none;"><center>恭喜得獎</center></div></h1>
+            <div class="d-flex justify-content-center">
+            
+            <script>  
+                function randomNumber(min, max) {  
+                    return Math.floor(Math.random() * (max - min) + min); 
+                }  
+                document.write("<br><span class='jump'>" + randomNumber(1, 1700 ) + "</span>" );  
             </script>  
 
-        </div>
-        <div class="d-flex justify-content-center">
+        </div></center>
+        <!-- <div class="d-flex justify-content-center">
             <a href="" class="btn btn-primary">再抽一組！</a>
-        </div>
+        </div> -->
 </body>
 </html>
