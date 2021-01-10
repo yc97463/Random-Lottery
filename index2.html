@@ -1,0 +1,136 @@
+
+
+
+
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <title>三民耶晚抽籤！</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="三民耶晚抽籤！">
+    <meta property="og:locale" content="zh_TW" />
+    <link rel="stylesheet" href="https://getbootstrap.com/docs/4.5/dist/css/bootstrap.min.css">
+    <meta http-equiv="pragma" content="no-cache">
+    <meta name="author" content="">
+    <meta name="robots" content="noindex,nofollow">
+    <!-- icons -->
+    <style>
+    @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&family=Noto+Serif+JP:wght@600;700&family=Noto+Serif+TC:wght@600;700&family=Poppins:wght@400;500;600;700&display=swap');
+    * {
+        font-family:  'Fira Code', 'Noto Sans TC', sans-serif;
+    }
+    /* .navbar-brand, .container .data-h3, .btn {
+        font-family: 'Noto Serif TC', 'Noto Serif JP', 'Noto Sans TC', sans-serif;
+    } */
+    body {
+        background:#AB32F1;
+        color:#FFF;
+        
+    }
+    @keyframes pop {
+        0% { transform: translate(0%, 20%) scale(1.25, 0.75); }
+        50% { transform: translate(0%, 30%) scale(1, 1); }
+        55% { transform: translate(0%, 30%) rotate(15deg); }
+        60% { transform: translate(0%, 30%) rotate(-15deg); }
+        65% { transform: translate(0%, 30%) rotate(15deg); }
+        70% { transform: translate(0%, 30%) rotate(-15deg); }
+        100% { transform: translate(0%, 20%) scale(1.25, 0.75); }
+    }
+    .jump {
+        animation: pop 1.2s infinite;
+        font-size:250px;
+
+    }
+    .container-flex {
+        height: calc(100%-40px);
+        width:100%;
+        background:#000000;
+    }
+    </style>
+</head>
+<body onclick="reload()">
+        <div class="modal fade" id="offlineMsg" role="dialog" data-backdrop="static">
+        <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-body">
+                        <p>
+                            
+<svg width="100%" height="300" viewBox="0 0 200 200">
+    <g transform="translate(100 100)">
+      <path transform="translate(-50 -50)" fill="tomato" d="M92.71,7.27L92.71,7.27c-9.71-9.69-25.46-9.69-35.18,0L50,14.79l-7.54-7.52C32.75-2.42,17-2.42,7.29,7.27v0 c-9.71,9.69-9.71,25.41,0,35.1L50,85l42.71-42.63C102.43,32.68,102.43,16.96,92.71,7.27z"></path>
+      <animateTransform 
+          attributeName="transform" 
+          type="scale" 
+          values="1; 1.5; 1.25; 1.5; 1.5; 1;" 
+          dur="1s" 
+          repeatCount="indefinite"
+          additive="sum">      
+      </animateTransform>
+  </g>
+</svg>
+<font style="color:#000;width:100%;font-size:150px;"><center>抽籤中</center></font>
+
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- <div class="jumbotron" style="height:100%;background:rgba(255,255,255,0);border:solid 5px #FFF;margin:20%;height:calc(100%-40px);">
+            <script>  
+                // Function to generate random number  
+                function randomNumber(min, max) {  
+                    return Math.floor(Math.random() * (max - min) + min); 
+                }  
+                  
+                // document.write("Random Number between 1 and 100: ")  
+                  
+                // Function call 
+                document.write("<span class='jump'>" + randomNumber(1, 1700 ) + "</span>" );  
+            </script>  
+        </div> -->
+        <center>
+                <h1 class="d-flex justify-content-center" style="padding-top:50px;margin-bottom:-50px;color:#FFF;text-decoration: none;font-size:100px;"><b><center>恭喜得獎</center></b></div></h1>
+                
+            <div class="d-flex justify-content-center">
+            
+            <script>  
+                function randomNumber(min, max) {  
+                    return Math.floor(Math.random() * (max - min) + min); 
+                }  
+                document.write("<br><b class='jump'>" + randomNumber(1, 1700 ) + "</b>" );  
+            </script>  
+
+        </div>
+        
+        
+        
+        
+        </center>
+        <!-- <div class="d-flex justify-content-center">
+            <a href="" class="btn btn-primary">再抽一組！</a>
+        </div> -->
+        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+        <script src="https://getbootstrap.com/docs/4.0/dist/js/bootstrap.min.js"></script>
+        
+        <script>
+            var audio = new Audio("https://web2.lottery-sm.server.imych.one/download/%E6%BA%96%E5%82%99%E6%8F%AD%E6%9B%89%E9%9F%B3%E6%95%88.mp3" ) ;
+                // audio.oncanplaythrough = function(){
+                // audio.play();
+            // }
+                // audio.loop = true;
+                // audio.onended = function(){
+                // audio.play();
+            // }
+            var delayInMilliseconds = 1500; //1 second
+
+            function reload() {
+                $("#offlineMsg").modal();
+                audio.play();
+                setTimeout(function() {
+              location.reload();
+              
+            }, delayInMilliseconds);};
+        </script>
+</body>
+</html>
