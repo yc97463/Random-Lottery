@@ -108,11 +108,11 @@
         document.body.style.background = bgColor;
     }
     function pickNext() {
-        var audio = new Audio("./drum.mp3" );
+        var audio = new Audio("./lottery-assets/drum.mp3" );
         audio.play();
         document.getElementById('startGame').innerHTML = '';
         document.getElementById('pickedTitle').innerHTML = '<b id="pickedTitle">第 ' + pickedID + ' 位得主是</b>';
-        document.getElementById('pickedNum').innerHTML = "<br><b class='jump popping'>🎁</b>";
+        document.getElementById('pickedNum').innerHTML = "<br><b class='jump popping'><img src='./lottery-assets/gift.png'></b>";
         setTimeout(function(){
             // audio.pause();
             //set background color
@@ -122,7 +122,7 @@
             console.log(pickedRecord);
             //show on screen
             randomBG();
-            document.getElementById('pickedTitle').innerHTML = '<b id="pickedTitle">恭喜中獎 🎉</b>';
+            document.getElementById('pickedTitle').innerHTML = '<b id="pickedTitle">恭喜中獎 <img src="./lottery-assets/party.png"></b>';
             document.getElementById('pickedNum').innerHTML = "<br><b class='jump'>" + hasPicked + "</b>" ;
         },1500);
         // while(True){
