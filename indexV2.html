@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <title>三民耶晚抽籤！</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="三民耶晚抽籤！">
+    <meta property="og:locale" content="zh_TW" />
+    <link rel="stylesheet" href="https://getbootstrap.com/docs/4.5/dist/css/bootstrap.min.css">
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+    <script src="https://getbootstrap.com/docs/4.5/dist/js/bootstrap.min.js"></script>
+    <meta http-equiv="pragma" content="no-cache">
+    <meta name="author" content="">
+    <meta name="robots" content="noindex,nofollow">
+    <!-- icons -->
+    <style>
+    @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&family=Noto+Serif+JP:wght@600;700&family=Noto+Serif+TC:wght@600;700&family=Poppins:wght@400;500;600;700&display=swap');
+    * {
+        font-family:  'Fira Code', 'Noto Sans TC', sans-serif;
+    }
+    /* .navbar-brand, .container .data-h3, .btn {
+        font-family: 'Noto Serif TC', 'Noto Serif JP', 'Noto Sans TC', sans-serif;
+    } */
+    body {
+        background:#4b4276;
+        /* color:#FFF; */
+        
+    }
+    @keyframes pop {
+        0% { transform: translate(0%, 20%) scale(1.25, 0.75); }
+        50% { transform: translate(0%, 30%) scale(1, 1); }
+        55% { transform: translate(0%, 30%) rotate(15deg); }
+        60% { transform: translate(0%, 30%) rotate(-15deg); }
+        65% { transform: translate(0%, 30%) rotate(15deg); }
+        70% { transform: translate(0%, 30%) rotate(-15deg); }
+        100% { transform: translate(0%, 20%) scale(1.25, 0.75); }
+    }
+    .jump {
+        animation: pop 1.2s infinite;
+        font-size:250px;
+
+    }
+    .container-flex {
+        height: calc(100%-40px);
+        width:100%;
+        background:#000000;
+    }
+
+    .pickedListCard  {
+        font-size: 80px;
+        margin-right: 25px;
+    }
+    .pickedListCard .key  {
+        border-radius: 10px;
+        padding: 0 20px;
+        margin-right: 8px;
+        margin-left: 8px;
+        background-color: aquamarine;
+    }
+
+    </style>
+</head>
+<script type="text/javascript">
+    function sysDetect() {
+        //先偵測環境變數
+        document.getElementById('pickResult').hidden = true;
+        var ticketMax = 0;
+        pickedRecord = [];
+        pickedID = 1;
+        if (ticketMax == 0) {
+            $("#setTicketInfoModal").modal();
+        }
+    }
+    function saveTicketInfo() {
+        //儲存 Ticket 資訊
+        const form = document.forms['setTicketInfoForm'];
+        ticketMax = form.elements.ticketMaxInput.value;
+        console.log(ticketMax);
+        // alert(ticketMax);
+        $("#setTicketInfoModal").modal('hide');
+    }
+    function randomNumber(min, max) {  
+        return Math.floor(Math.random() * (max - min) + min); 
+    }
+    function record(id, hasPicked) {
+        pickedRecord.push(hasPicked);
+        var div = document.getElementById('pickedListDiv');
+        
+        div.innerHTML += '<div class="pickedListCard alert alert-info col"><span class="key">' + id + '</span><span class="picked">' + hasPicked + '</span>';
+    }
+
+    function pickNext() {
+        var audio = new Audio("./drum.mp3" );
+        audio.play();
+        document.getElementById('startGame').innerHTML = '';
+        document.getElementById('pickedTitle').innerHTML = '<b id="pickedTitle">抽獎中</b>';
+        document.getElementById('pickedNum').innerHTML = "<br><b class='jump'>⋯</b>";
+        setTimeout(function(){
+            // audio.pause();
+            //set background color
+            hasPicked = randomNumber(0, ticketMax);
+            record(pickedID, hasPicked);
+            pickedID += 1;
+            console.log(pickedRecord);
+            //show on screen
+            document.getElementById('pickedTitle').innerHTML = '<b id="pickedTitle">恭喜得獎</b>';
+            document.getElementById('pickedNum').innerHTML = "<br><b class='jump'>" + hasPicked + "</b>" ;
+        },1500);
+        // while(True){
+            
+        // }
+
+    }
+    function showPickedList() {        
+        $("#showPickedListModal").modal();
+    }
+    
+</script>
+<!--  onclick="reload()" -->
+<body onload="sysDetect()">
+    <div class="modal fade" id="setTicketInfoModal" role="dialog" data-backdrop="static">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="staticBackdropLabel">設定環境變數</h5>
+                </div>
+                <div class="modal-body">
+                    <form name="setTicketInfoForm" id="setTicketInfoForm" target="javascript:;" method="POST">
+                        <div class="form-group">
+                            <label for="ticketMaxInput">票券總數</label>
+                            <input type="number" class="form-control" name="ticketMaxInput" id="ticketMaxInput" aria-describedby="helpTicketMax" autofocus="autofocus">
+                            <small id="helpTicketMax" class="form-text text-muted">請輸入總數，例如 <code>445</code></small>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" onclick="window.location.reload()">重來</button>
+                    <button type="button" class="btn btn-success" onclick="saveTicketInfo()">儲存</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="pickingMsgModal" role="dialog" data-backdrop="static">
+        <div class="modal-dialog modal-xl">
+            <div class="modal-content">
+                <div class="modal-body">
+                    抽獎中
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="showPickedListModal" role="dialog" data-backdrop="static">
+        <div class="modal-dialog modal-xl">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="staticBackdropLabel">中獎紀錄名單</h5>
+                </div>
+                <div class="modal-body">
+                    <div class="container">
+                        <div class="row" id="pickedListDiv">
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal" style="width:100%">關閉</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <center id="mainContent">
+        <div class="d-flex justify-content-center" id="startGame" onclick="pickNext()" style="color:white;">
+            <br><b class='jump'>開始抽獎</b> 
+        </div>
+        <div class="d-flex justify-content-center" id="pickResult" style="color:white; margin-top:100px;">
+            <div class="container">
+                <center>
+                    <h1 style="text-decoration: none;font-size:100px;">
+                        <div id="pickedTitle"></div>
+                    </h1>
+                </center>
+                <center>
+                    <div id="pickedNum"></div>
+                </center>
+                <hr>
+                <center>
+                    <div class="d-flex justify-content-center" id="btns">
+                        <button type="button" class="btn btn-lg btn-success" onclick="pickNext()" style="margin-right: 25px;">抽！</button>
+                        <button type="button" class="btn btn-lg btn-info" onclick="showPickedList()" style="margin-right: 25px;">中獎名單</button>
+                        <button type="button" class="btn btn-lg btn-secondary" onclick="window.location.reload()">全部重來</button>
+                    </div>
+                </center>
+            </div>
+            
+        </div>
+    </center>
+</body>
+</html>
