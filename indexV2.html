@@ -36,6 +36,7 @@
         100% { transform: translate(0%, 20%) scale(1.25, 0.75); }
     }
     .jump {
+        display:inline;
         animation: pop 1.2s infinite;
         font-size:250px;
 
@@ -55,7 +56,17 @@
         padding: 0 20px;
         margin-right: 8px;
         margin-left: 8px;
-        background-color: aquamarine;
+        /* background-color: aquamarine; */
+    }
+
+    .popping {
+        display:inline-block;
+        animation: pulse 0.3s ease-in infinite;
+    }
+
+    @keyframes pulse{
+        25%  {transform: scale(0.9);}
+        75%  {transform: scale(1.1);}
     }
 
     </style>
@@ -86,15 +97,21 @@
         pickedRecord.push(hasPicked);
         var div = document.getElementById('pickedListDiv');
         
-        div.innerHTML += '<div class="pickedListCard alert alert-info col"><span class="key">' + id + '</span><span class="picked">' + hasPicked + '</span>';
+        div.innerHTML += '<div class="pickedListCard alert alert-info col"><span class="key btn-info">' + id + '</span><span class="picked">' + hasPicked + '</span>';
     }
-
+    function randomBG() {
+        var x = Math.floor(Math.random() * 256);
+        var y = Math.floor(Math.random() * 256);
+        var z = Math.floor(Math.random() * 256);
+        var bgColor = "rgb(" + x + "," + y + "," + z + ")";
+        document.body.style.background = bgColor;
+    }
     function pickNext() {
         var audio = new Audio("./drum.mp3" );
         audio.play();
         document.getElementById('startGame').innerHTML = '';
-        document.getElementById('pickedTitle').innerHTML = '<b id="pickedTitle">抽獎中</b>';
-        document.getElementById('pickedNum').innerHTML = "<br><b class='jump'>⋯</b>";
+        document.getElementById('pickedTitle').innerHTML = '<b id="pickedTitle">抽獎中，' + pickedID + ' 號得主是</b>';
+        document.getElementById('pickedNum').innerHTML = "<br><b class='jump popping'>⋯</b>";
         setTimeout(function(){
             // audio.pause();
             //set background color
@@ -103,7 +120,8 @@
             pickedID += 1;
             console.log(pickedRecord);
             //show on screen
-            document.getElementById('pickedTitle').innerHTML = '<b id="pickedTitle">恭喜得獎</b>';
+            randomBG();
+            document.getElementById('pickedTitle').innerHTML = '<b id="pickedTitle">恭喜中獎 🎉</b>';
             document.getElementById('pickedNum').innerHTML = "<br><b class='jump'>" + hasPicked + "</b>" ;
         },1500);
         // while(True){
@@ -128,7 +146,7 @@
                     <form name="setTicketInfoForm" id="setTicketInfoForm" target="javascript:;" method="POST">
                         <div class="form-group">
                             <label for="ticketMaxInput">票券總數</label>
-                            <input type="number" class="form-control" name="ticketMaxInput" id="ticketMaxInput" aria-describedby="helpTicketMax" autofocus="autofocus">
+                            <input type="number" class="form-control" name="ticketMaxInput" id="ticketMaxInput" aria-describedby="helpTicketMax" autofocus="autofocus" min="1" required>
                             <small id="helpTicketMax" class="form-text text-muted">請輸入總數，例如 <code>445</code></small>
                         </div>
                     </form>
@@ -167,11 +185,11 @@
             </div>
         </div>
     </div>
-    <center id="mainContent">
+    <center id="mainContent" style=" margin-top:50px;">
         <div class="d-flex justify-content-center" id="startGame" onclick="pickNext()" style="color:white;">
             <br><b class='jump'>開始抽獎</b> 
         </div>
-        <div class="d-flex justify-content-center" id="pickResult" style="color:white; margin-top:100px;">
+        <div class="d-flex justify-content-center" id="pickResult" style="color:white;">
             <div class="container">
                 <center>
                     <h1 style="text-decoration: none;font-size:100px;">
@@ -183,10 +201,10 @@
                 </center>
                 <hr>
                 <center>
-                    <div class="d-flex justify-content-center" id="btns">
-                        <button type="button" class="btn btn-lg btn-success" onclick="pickNext()" style="margin-right: 25px;">抽！</button>
-                        <button type="button" class="btn btn-lg btn-info" onclick="showPickedList()" style="margin-right: 25px;">中獎名單</button>
-                        <button type="button" class="btn btn-lg btn-secondary" onclick="window.location.reload()">全部重來</button>
+                    <div class="d-flex justify-content-center" id="btns" style="margin-top:100px;">
+                        <button type="button" class="btn btn-lg btn-success" onclick="pickNext()" style="margin-right: 25px;">🍰 抽！</button>
+                        <button type="button" class="btn btn-lg btn-info" onclick="showPickedList()" style="margin-right: 25px;">🎉 中獎名單</button>
+                        <button type="button" class="btn btn-lg btn-secondary" onclick="window.location.reload()">👋 全部重來</button>
                     </div>
                 </center>
             </div>
